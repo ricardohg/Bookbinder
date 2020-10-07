@@ -7,6 +7,7 @@
 //
 
 import Kanna
+import Foundation
 
 // https://www.w3.org/Submission/2017/SUBM-epub-packages-20170125/
 public struct OPFDocument {
@@ -18,7 +19,7 @@ public struct OPFDocument {
     // http://www.idpf.org/epub/301/spec/epub-publications.html#sec-guide-elem
     // let guide
 
-    public let document: XMLDocument
+    public let document: Kanna.XMLDocument
 
     init?(url: URL) {
         do {

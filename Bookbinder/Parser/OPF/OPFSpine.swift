@@ -7,6 +7,7 @@
 //
 
 import Kanna
+import Foundation
 
 // https://www.w3.org/Submission/2017/SUBM-epub-packages-20170125/#sec-spine-elem
 public struct OPFSpine {
@@ -15,7 +16,7 @@ public struct OPFSpine {
     // page-progression-direction [optional]
     // toc [optional] [OBSOLETE]
 
-    init?(package: XMLElement) {
+    init?(package: Kanna.XMLElement) {
         guard let spine = package.at_xpath("opf:spine", namespaces: XPath.opf.namespace) else { return nil }
         toc = spine["toc"]
         let itemrefElements = spine.xpath("opf:itemref", namespaces: XPath.opf.namespace)
@@ -39,7 +40,7 @@ public struct SpineItemref {
         return linear == "yes"
     }
 
-    init?(_ itemref: XMLElement) {
+    init?(_ itemref: Kanna.XMLElement) {
         guard let itemIdref = itemref["idref"] else { return nil }
         idref = itemIdref
         linear = itemref["linear"]

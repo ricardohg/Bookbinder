@@ -7,6 +7,7 @@
 //
 
 import ZIPFoundation
+import Foundation
 
 public class Bookbinder {
     public let configuration: BookbinderConfiguration

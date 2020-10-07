@@ -7,11 +7,12 @@
 //
 
 import Kanna
+import Foundation
 
 public struct ContainerDocument {
     public let opfPath: String
 
-    public let document: XMLDocument
+    public let document: Kanna.XMLDocument
 
     init?(url: URL) {
         do {

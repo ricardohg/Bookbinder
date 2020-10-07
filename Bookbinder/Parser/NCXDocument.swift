@@ -7,13 +7,14 @@
 //
 
 import Kanna
+import Foundation
 
 // http://www.idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.4.1
 public struct NCXDocument {
     public let title: String?
     public private(set) var points = [NavPoint]()
 
-    public let document: XMLDocument
+    public let document: Kanna.XMLDocument
 
     init?(url: URL) {
         do {
@@ -37,7 +38,7 @@ public struct NavPoint {
     public let src: String
     public private(set) var subPoints = [NavPoint]()
 
-    init?(_ navPoint: XMLElement) {
+    init?(_ navPoint: Kanna.XMLElement) {
         guard let playOrder = navPoint["playOrder"], let pointOrder = Int(playOrder) else { return nil }
         guard let pointLabel = navPoint.at_xpath("ncx:navLabel/ncx:text", namespaces: XPath.ncx.namespace)?.text else { return nil }
         guard let pointSrc = navPoint.at_xpath("ncx:content/@src", namespaces: XPath.ncx.namespace)?.text else { return nil }

@@ -7,7 +7,7 @@
 //
 
 import Kanna
-
+import Foundation
 // https://www.w3.org/Submission/2017/SUBM-epub-packages-20170125/#sec-metadata-elem
 public struct OPFMetadata {
     // DCMES Required Elements
@@ -32,7 +32,7 @@ public struct OPFMetadata {
     public private(set) var coverImageID: String?
     // LINK Elements
 
-    init?(package: XMLElement) {
+    init?(package: Kanna.XMLElement) {
         guard let metadata = package.at_xpath("opf:metadata", namespaces: XPath.opf.namespace) else { return nil }
         // DCMES
         let dcmes = metadata.xpath("dc:*", namespaces: XPath.dc.namespace)
@@ -110,7 +110,7 @@ public struct DCIdentifier {
     public let text: String
     public let id: String?
 
-    init(_ dc: XMLElement) {
+    init(_ dc: Kanna.XMLElement) {
         text = dc.text ?? ""
         id = dc["id"]
     }

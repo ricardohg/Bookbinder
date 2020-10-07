@@ -7,12 +7,13 @@
 //
 
 import Kanna
+import Foundation
 
 // https://www.w3.org/Submission/2017/SUBM-epub-packages-20170125/#sec-manifest-elem
 public struct OPFManifest {
     public private(set) var items = [String: ManifestItem]()
 
-    init?(package: XMLElement) {
+    init?(package: Kanna.XMLElement) {
         guard let manifest = package.at_xpath("opf:manifest", namespaces: XPath.opf.namespace) else { return nil }
         let itemElements = manifest.xpath("opf:item", namespaces: XPath.opf.namespace)
         for itemElement in itemElements {
@@ -34,7 +35,7 @@ public struct ManifestItem {
     // fallback [conditionally required]
     // media-overlay [optional]
 
-    init?(_ item: XMLElement) {
+    init?(_ item: Kanna.XMLElement) {
         guard let itemId = item["id"] else { return nil }
         guard let itemHref = item["href"] else { return nil }
         guard let itemMediaType = item["media-type"] else { return nil }
