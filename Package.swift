@@ -28,12 +28,15 @@ let package = Package(
         .target(
             name: "Bookbinder",
             dependencies: ["ZIPFoundation", "Kanna"],
-            path: "Bookbinder")
+            path: "Bookbinder",
+            exclude: ["Info.plist"])
         ,
         .testTarget(
             name: "BookbinderTests",
             dependencies: ["Bookbinder"],
-            path: "BookbinderTests")
+            path: "BookbinderTests",
+            exclude: ["Info.plist"],
+            resources: [.copy("EPUBs"), .copy("OPFs"), .copy("NCXs"), .copy("ZIPs"), .copy("Containers")])
         
     ],
     swiftLanguageVersions: [.v5]
